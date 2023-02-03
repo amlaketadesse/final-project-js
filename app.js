@@ -9,11 +9,11 @@ async function getMovieList(){
     const movies = await fetch(`https://www.omdbapi.com/?apikey=4d79dfe6&s=${searchInputTxt}`);
     const moviesData = await movies.json();
     console.log(moviesData)
-    movieList.innerHTML = moviesData.results?.map(movie => getMovieList(movie)).join('')
+    movieList.innerHTML = moviesData.search?.map(movie => getMovieList(movie)).join('')
 
 
         function getMovieList(movie) {
-                 `<div class="movie" data-id = ${movie.imdbID}>
+                   return `<div class="movie" id="movies" data-id = ${movie.imdbID}>
                         <figure class="movie__img--wrapper">
                             <img src="${movie.Poster}" class="movie__img">
                         </figure>
@@ -29,3 +29,5 @@ async function getMovieList(){
 }
 
 getMovieList();
+
+console.log(movieList)
